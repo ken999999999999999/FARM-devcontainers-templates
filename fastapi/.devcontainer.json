@@ -1,0 +1,21 @@
+{
+  "dockerComposeFile": ["../docker-compose.dev.yaml"],
+  "service": "fastapi",
+  "workspaceFolder": "/workspace/fastapi",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "eamodio.gitlens",
+        "streetsidesoftware.code-spell-checker",
+        "ms-python.autopep8"
+      ],
+      "settings": {
+        "[python]": {
+          "editor.defaultFormatter": "ms-python.autopep8",
+          "editor.formatOnSave": true
+        }
+      }
+    }
+  }
+}

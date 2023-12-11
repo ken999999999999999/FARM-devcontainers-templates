@@ -1,0 +1,50 @@
+version: "3.8"
+
+services:
+  mongodb:
+    image: mongo:latest
+    env_file:
+      - .env
+    ports:
+      - 27017:27017
+    volumes:
+      - mongodb_data_container:/data/db
+    networks:
+      - todo_app_network
+
+  fastapi:
+    depends_on:
+      - mongodb
+    command: /bin/sh -c "while sleep 1000; do :; done"
+    build:
+      context: ./fastapi
+      dockerfile: dev.Dockerfile
+    env_file:
+      - ./fastapi/.env
+    ports:
+      - 8000:8000
+      - 5678:5678
+    volumes:
+      - .:/workspace:cached
+    networks:
+      - todo_app_network
+
+  reactjs:
+    build:
+      context: ./reactjs
+      dockerfile: dev.Dockerfile
+    ports:
+      - 3000:3000
+    env_file:
+      - ./reactjs/.env
+    volumes:
+      - .:/workspace:cached
+    networks:
+      - todo_app_network
+
+volumes:
+  mongodb_data_container:
+
+networks:
+  todo_app_network:
+    name: todo_app_network
