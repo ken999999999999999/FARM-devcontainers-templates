@@ -1,13 +1,10 @@
-from contextlib import asynccontextmanager
-import json
-from fastapi import Depends, FastAPI
+from fastapi import FastAPI
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import PlainTextResponse
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 from apps.config import settings
-
-
+from apps.routers import todo_items
 
 
 app = FastAPI(
@@ -15,6 +12,8 @@ app = FastAPI(
     docs_url="/docs",
     redoc_url="/redoc",
 )
+
+app.include_router(todo_items.router)
 
 app.add_middleware(
     CORSMiddleware,
@@ -24,6 +23,7 @@ app.add_middleware(
     allow_methods=["*"],  # Allows all methods
     allow_headers=["*"],  # Allows all headers
 )
+
 
 @app.exception_handler(RequestValidationError)
 async def validation_exception_handler(request, exc):

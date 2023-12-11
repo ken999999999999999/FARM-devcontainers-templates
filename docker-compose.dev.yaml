@@ -15,7 +15,6 @@ services:
   fastapi:
     depends_on:
       - mongodb
-    command: /bin/sh -c "while sleep 1000; do :; done"
     build:
       context: ./fastapi
       dockerfile: dev.Dockerfile

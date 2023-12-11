@@ -8,14 +8,9 @@ class DBContextManager:
     def __init__(self, db_name):
         self.db_client = AsyncIOMotorClient(settings.DB_URL)
         self.db = self.db_client[db_name]
-        self.posts = self.db['posts']
+        self.todo_items = self.db['todo_items']
+        self.todo_lists = self.db['todo_lists']
         self.users = self.db['users']
-        self.relationships = self.db['relationships']
-        self.comments = self.db['comments']
-        self.reactions = self.db['reactions']
-        self.chatrooms = self.db['chatrooms']
-        self.chats = self.db['chats']
-        self.tickets = self.db['tickets']
 
     def __enter__(self):
         return self
