@@ -9,7 +9,7 @@ class CreateTodoListCommand(BaseModel):
 
 class UpdateTodoListCommand(BaseModel):
     id: PyObjectId
-    title: bool
+    title: str
 
 
 class TodoListDto(BaseModel):
