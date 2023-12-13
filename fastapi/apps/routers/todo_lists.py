@@ -15,7 +15,7 @@ router = APIRouter(
 
 
 @router.get("/list/")
-async def get_todo_lists_command(db_context: db_context,) -> [TodoListDto]:
+async def get_todo_lists_command(db_context: db_context) -> list[TodoListDto]:
     query = await db_context.todo_lists.aggregate([
         {"$lookup": {
             "from": "todo_items",

@@ -15,4 +15,4 @@ class UpdateTodoListCommand(BaseModel):
 class TodoListDto(BaseModel):
     id: PyObjectId
     title: str = Field(..., max_length=200)
-    todo_items: [TodoItemDto] = []
+    todo_items: list[TodoItemDto]

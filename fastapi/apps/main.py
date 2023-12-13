@@ -4,7 +4,7 @@ from fastapi.responses import PlainTextResponse
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 from apps.config import settings
-from apps.routers import todo_items
+from apps.routers import todo_items, todo_lists
 
 
 app = FastAPI(
@@ -14,6 +14,7 @@ app = FastAPI(
 )
 
 app.include_router(todo_items.router)
+app.include_router(todo_lists.router)
 
 app.add_middleware(
     CORSMiddleware,
